@@ -22,7 +22,7 @@ public class Main {
 		Registers registers = generateTables.generateRegisterTable();
 		
 		SymbolTable symbolTable = new SymbolTable();
-		Hashtable<Integer, SymbolTableBean> symTable = symbolTable.generateSymbolTable(pseudoOpcodeTable, registers, declarativeStatementsTable, opcodeTable);
+		Hashtable<String, SymbolTableBean> symTable = symbolTable.generateTables(pseudoOpcodeTable, registers, declarativeStatementsTable, opcodeTable);
 		
 		
 	}

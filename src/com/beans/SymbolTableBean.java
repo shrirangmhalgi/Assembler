@@ -1,15 +1,15 @@
 package com.beans;
 
 public class SymbolTableBean {
-	String symbolName;
+	Integer symbolNumber;
 	Integer address;
 	
-	public String getSymbolName() {
-		return symbolName;
+	public Integer getSymbolNumber() {
+		return symbolNumber;
 	}
 	
-	public void setSymbolName(String symbolName) {
-		this.symbolName = symbolName;
+	public void setSymbolNumber(Integer symbolNumber) {
+		this.symbolNumber = symbolNumber;
 	}
 	
 	public Integer getAddress() {
