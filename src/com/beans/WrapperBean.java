@@ -4,7 +4,7 @@ import java.util.Hashtable;
 
 public class WrapperBean {
 	private Hashtable<String, SymbolTableBean> symbolTable = new Hashtable<>();
-	private Hashtable<String, SymbolTableBean> literalTable = new Hashtable<>();
+	private Hashtable<String, LiteralTableBean> literalTable = new Hashtable<>();
 	
 	public Hashtable<String, SymbolTableBean> getSymbolTable() {
 		return symbolTable;
@@ -14,11 +14,11 @@ public class WrapperBean {
 		this.symbolTable = symbolTable;
 	}
 	
-	public Hashtable<String, SymbolTableBean> getLiteralTable() {
+	public Hashtable<String, LiteralTableBean> getLiteralTable() {
 		return literalTable;
 	}
 	
-	public void setLiteralTable(Hashtable<String, SymbolTableBean> literalTable) {
+	public void setLiteralTable(Hashtable<String, LiteralTableBean> literalTable) {
 		this.literalTable = literalTable;
 	}
 }

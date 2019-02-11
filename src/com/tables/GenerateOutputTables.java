@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
@@ -13,12 +12,13 @@ import java.util.regex.Pattern;
 
 import com.beans.LiteralTableBean;
 import com.beans.SymbolTableBean;
+import com.beans.WrapperBean;
 
-//put everything logic in this class... generate a bean and send it to the client....
-public class SymbolTable {
+public class GenerateOutputTables {
 	StringTokenizer tokenizer;
 
-	public Hashtable<String, SymbolTableBean> generateTables(PseudoOpcodeTable pseudoOpcodeTable, Registers registers, DeclarativeStatementsTable declarativeStatementsTable, OpcodeTable opcodeTable){
+	public WrapperBean generateTables(PseudoOpcodeTable pseudoOpcodeTable, Registers registers, DeclarativeStatementsTable declarativeStatementsTable, OpcodeTable opcodeTable){
+		WrapperBean wrapperBean = new WrapperBean();
 		Hashtable<String, SymbolTableBean> symbolTable = new Hashtable<>();
 		Hashtable<String, LiteralTableBean> literalTable = new Hashtable<>();
 		String str;
@@ -40,25 +40,21 @@ public class SymbolTable {
 					str = tokenizer.nextToken();
 					
 					if(registers.getRegisterTable().containsKey(str)) {
-						//System.out.println("----a register");
 						
 						//write the register value into the file over here....
 					}
 					else {
 						if(pseudoOpcodeTable.getPseudoOpcodeTable().containsKey(str)) {
-							//System.out.println("----a pseudoOpcode");
 							
 							//write the contents as (AD, value) of the code into the file over here.....
 						}
 						else {
 							if(declarativeStatementsTable.getDeclarativeStatementsTable().containsKey(str)) {
-								//System.out.println("----a declarative statement");
 								
 								//write (DL, value) of the code into the file over here.....
 							}
 							else {
 								if(opcodeTable.getMneumonicOpcodeTable().containsKey(str)) {
-									//System.out.println("----a opcode");
 									
 									//write (IS, value) of the code into the file over here.....
 								}
@@ -89,13 +85,11 @@ public class SymbolTable {
 											symbolTableBean.setSymbolNumber(symbolNumber);
 											symbolTable.put(str, symbolTableBean);
 										
-											System.out.println(str +" " +(symbolTable.get(str)).getSymbolNumber());
 											symbolNumber++;
 										}
 									}
 									
 									else if(locationMatcher.find()) {
-										//System.out.println("location found " +str);
 										
 										//set the location counter and increment it accordingly...
 									}
@@ -113,6 +107,8 @@ public class SymbolTable {
 			e.printStackTrace();
 		}
 		
-		return symbolTable;
+		wrapperBean.setSymbolTable(symbolTable);
+		wrapperBean.setLiteralTable(literalTable);
+		return wrapperBean;
 	}
 }
